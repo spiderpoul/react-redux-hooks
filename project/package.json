@@ -4,7 +4,9 @@
   "description": "React workshop",
   "main": "index.js",
   "scripts": {
-    "webpackServer": "webpack-dev-server --hot"
+    "webpackServer": "webpack-dev-server --hot",
+    "mock:api": "json-server --watch api/db.json --port 4000",
+    "start": "npm run mock:api | npm run webpackServer"
   },
   "author": "",
   "license": "ISC",
