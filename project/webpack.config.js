@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        app:  ["./src/index.js"]
+        app:  "./src/index.js"
     },
     output: {
         filename: "[name].js",
@@ -17,6 +17,12 @@ module.exports = {
     }
     },
     mode:'development',
+    devtool: "cheap-module-source-map",
+    resolve: {
+        alias: {
+          'react-dom': '@hot-loader/react-dom',
+        },
+      },
     module: {
              rules: [
                 {
@@ -36,5 +42,5 @@ module.exports = {
             resolve: {
                 extensions: [ ".js", ".jsx" ]
             }
-};
+        };
         
