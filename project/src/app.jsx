@@ -5,4 +5,4 @@ const App = () => (
 <div></div>
 );
 
-export default hot(module)(App);
+export default App;
