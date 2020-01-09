@@ -1,8 +1,9 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
+import Container from "./Container";
+import ErrorBoundary from "./ErrorBoundary";
 
 const App = () => (
-<div></div>
+    <ErrorBoundary><Container /></ErrorBoundary>
 );
 
 export default App;

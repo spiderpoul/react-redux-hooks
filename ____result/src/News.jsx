@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ItemComponent from "./ItemComponent";
+import { API_URL } from './constants';
 
 export class News extends Component {
     constructor() {
@@ -12,14 +13,15 @@ export class News extends Component {
     }
 
     componentDidMount () {
-        fetch("http://localhost:4000/News")
+        fetch(`${API_URL}`)
         .then(response => response.json())
+        .then(response => response.hits)
         .then(json => this.setState({ news: json, isLoading: false }));
     }
 
     render() {
         if (this.state.isLoading) 
-            return (<h1>Loading.....</h1>);
+            return (<div className='loader' />);
         return (<>
             {this.state.news.map((item, index) => <ItemComponent
                 key={item.id}
