@@ -25,12 +25,12 @@ class Container extends Component {
           <ul className="menu">
             <li>
               <a href="#" onClick={() => this.setPage(pages.list)}>
-                Все новости
+                All news
               </a>
             </li>
             <li>
               <a href="#" onClick={() => this.setPage(pages.add)}>
-                Создать
+                Add new
               </a>
             </li>
           </ul>
