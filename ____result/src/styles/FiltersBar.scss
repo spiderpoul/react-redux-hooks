@@ -1,0 +1,39 @@
+.filters-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.search-bar {
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  min-height: 38px;
+  padding: 0 12px;
+  color: hsl(0, 0%, 20%);
+  overflow: hidden;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-grow: 2;
+  min-width: 200px;
+
+  margin-right: 10px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.sort-filter {
+  flex-grow: 1;
+  min-width: 100px;
+  transition: all 0.2s ease-in-out;
+}
+
+.category-filter {
+  flex-grow: 2;
+  min-width: 100px;
+  margin-right: 10px;
+  transition: all 0.2s ease-in-out;
+}
