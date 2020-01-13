@@ -10,7 +10,7 @@ function SearchBar() {
         <DebounceInput
             className="search-bar"
             minLength={2}
-            debounceTimeout={300}
+            debounceTimeout={500}
             onChange={event => setSearch(event.target.value)}
         />
     );

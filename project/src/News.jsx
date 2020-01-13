@@ -13,7 +13,7 @@ export class News extends Component {
     }
 
     componentDidMount () {
-        fetch(`${API_URL}`)
+        fetch(`${API_URL}/search_by_date`)
         .then(response => response.json())
         .then(response => response.hits)
         .then(json => this.setState({ news: json, isLoading: false }));

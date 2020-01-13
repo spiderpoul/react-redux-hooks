@@ -78,7 +78,7 @@ const News = () => {
   // вызывается сразу после монтирования (то есть, вставки компонента в DOM)
   componentDidMount() {
       this.setState({ isLoading: true })
-     fetch(`${API_URL}`)
+     fetch(`${API_URL}/search_by_date`)
           .then(response => response.json())
           .then(response => response.hits)
           .then(json => this.setState({ news: json, isLoading: false }));
@@ -96,7 +96,7 @@ const News = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`${API_URL}`)
+        fetch(`${API_URL}/search_by_date`)
             .then(response => response.json())
             .then(response => response.hits)
             .then(json => {
@@ -137,7 +137,7 @@ const useNews = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`${API_URL}`)
+        fetch(`${API_URL}/search_by_date`)
             .then(response => response.json())
             .then(response => response.hits)
             .then(json => {
@@ -175,7 +175,7 @@ function SearchBar() {
         <DebounceInput
             className="search-bar"
             minLength={2}
-            debounceTimeout={300}
+            debounceTimeout={500}
             onChange={event => setSearch(event.target.value)}
         />
     );
@@ -240,22 +240,22 @@ export default Sorting;
 В файле `News.jsx` добавим панель фильтров:
 
 ```jsx
+...
+import FiltersBar from './FiltersBar/FiltersBar';
+
 const News = () => {
     const { isLoading, news } = useNews();
-
-    if (isLoading) {
-        return <div className="loader" />;
-    }
 
     return (
         <>
             <FiltersBar />
-            {news.map((item, index) => (
+            {!isLoading ? news.map((item, index) => (
                 <ItemComponent key={item.id} index={index} item={item} />
-            ))}
+            )) : <div className="loader" />}
         </>
     );
 };
+
 ```
 
 Для того, чтобы использовать фильтры, нам необходимо вынести данные в общее хранилище, для этого будем использовать Redux.
@@ -371,15 +371,15 @@ const initialState = {
 const filtersReducer = createReducer(initialState, {
     [SET_SEARCH_FILTER]: (state, action) => ({
         ...state,
-        token: action.payload.search,
+        search: action.payload.search,
     }),
     [SET_CATEGORY_FILTER]: (state, action) => ({
         ...state,
-        token: action.payload.category,
+        category: action.payload.category,
     }),
     [SET_SORTING]: (state, action) => ({
         ...state,
-        token: action.payload.sort,
+        sort: action.payload.sort,
     }),
 });
 
@@ -421,7 +421,7 @@ const useNews = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(`${API_URL}`)
+        fetch(`${API_URL}/search_by_date`)
             .then(response => response.json())
             .then(response => response.hits)
             .then((json) => {

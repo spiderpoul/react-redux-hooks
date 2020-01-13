@@ -7,14 +7,12 @@ import FiltersBar from './FiltersBar/FiltersBar';
 const News = () => {
     const { isLoading, news } = useNews();
 
-    if (isLoading) { return <div className="loader" />; }
-
     return (
         <>
             <FiltersBar />
-            {news.map((item, index) => (
+            {!isLoading ? news.map((item, index) => (
                 <ItemComponent key={item.id} index={index} item={item} />
-            ))}
+            )) : <div className="loader" />}
         </>
     );
 };

@@ -6,21 +6,21 @@ import { SORT_OPTIONS } from '../constants';
 const initialState = {
     search: '',
     sort: SORT_OPTIONS[0],
-    category: null,
+    category: [],
 };
 
 const filtersReducer = createReducer(initialState, {
     [SET_SEARCH_FILTER]: (state, action) => ({
         ...state,
-        token: action.payload.search,
+        search: action.payload.search,
     }),
     [SET_CATEGORY_FILTER]: (state, action) => ({
         ...state,
-        token: action.payload.category,
+        category: action.payload.category,
     }),
     [SET_SORTING]: (state, action) => ({
         ...state,
-        token: action.payload.sort,
+        sort: action.payload.sort,
     }),
 });
 

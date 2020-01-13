@@ -1,13 +1,14 @@
-export const API_URL = 'https://hn.algolia.com/api/v1/search_by_date';
+export const API_URL = 'https://hn.algolia.com/api/v1';
 
 export const CATEGORIES_OPTIONS = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+    { value: 'story', label: 'story' },
+    { value: 'comment', label: 'comment' },
+    { value: 'poll', label: 'poll' },
+    { value: 'show_hn', label: 'show hn' },
+    { value: 'front_page', label: 'front page' },
 ];
 
 export const SORT_OPTIONS = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+    { label: 'More recent', value: 'search_by_date' },
+    { label: 'Popular', value: 'search' },
 ];
