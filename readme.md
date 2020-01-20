@@ -21,7 +21,7 @@
 4. Расширение Redux Dev Tools для Chrome
 5. Хорошее настроение, время, налитый горячий чай или кофе.
 
-*Опционально:* плагин для VS CODE "Markdown all in one" <https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one>
+*Опционально:* плагин для VS CODE "Markdown Preview" <https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced>
 
 ## Начало работы
 
