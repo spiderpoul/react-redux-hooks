@@ -427,17 +427,50 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
 <li><a href="#%d0%98%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d1%83%d0%b5%d0%bc-react-hooks">Используем React Hooks</a>
 <ul>
 <li><a href="#usestate">useState</a></li>
-<li><a href="#useeffect">useEffect</a></li>
-<li><a href="#custom-hook">Custom Hook</a></li>
+<li><a href="#useeffect">useEffect</a>
+<ul>
+<li><a href="#snippet-1">snippet #1</a></li>
 </ul>
 </li>
-<li><a href="#%d0%94%d0%be%d0%b1%d0%b0%d0%b2%d0%bb%d1%8f%d0%b5%d0%bc-%d0%bf%d0%b0%d0%bd%d0%b5%d0%bb%d1%8c-%d1%84%d0%b8%d0%bb%d1%8c%d1%82%d1%80%d0%be%d0%b2">Добавляем панель фильтров</a></li>
+<li><a href="#custom-hook">Custom Hook</a>
+<ul>
+<li><a href="#snippet-2">snippet #2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%d0%94%d0%be%d0%b1%d0%b0%d0%b2%d0%bb%d1%8f%d0%b5%d0%bc-%d0%bf%d0%b0%d0%bd%d0%b5%d0%bb%d1%8c-%d1%84%d0%b8%d0%bb%d1%8c%d1%82%d1%80%d0%be%d0%b2">Добавляем панель фильтров</a>
+- <a href="#snippet-3">snippet #3</a>
+- <a href="#snippet-4">snippet #4</a>
+- <a href="#snippet-5">snippet #5</a>
+- <a href="#snippet-6">snippet #6</a></li>
 <li><a href="#%d0%9f%d0%be%d0%b4%d0%ba%d0%bb%d1%8e%d1%87%d0%b0%d0%b5%d0%bc-redux">Подключаем Redux</a>
 <ul>
-<li><a href="#%d0%98%d0%bd%d0%b8%d1%86%d0%b8%d0%b0%d0%bb%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d1%8f">Инициализация</a></li>
-<li><a href="#actions">Actions</a></li>
-<li><a href="#reducers">Reducers</a></li>
-<li><a href="#redux-hooks">Redux Hooks</a></li>
+<li><a href="#%d0%98%d0%bd%d0%b8%d1%86%d0%b8%d0%b0%d0%bb%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d1%8f">Инициализация</a>
+<ul>
+<li><a href="#snippet-7">snippet #7</a></li>
+</ul>
+</li>
+<li><a href="#actions">Actions</a>
+<ul>
+<li><a href="#snippet-8">snippet #8</a></li>
+</ul>
+</li>
+<li><a href="#reducers">Reducers</a>
+<ul>
+<li><a href="#snippet-9">snippet #9</a></li>
+<li><a href="#snippet-10">snippet #10</a>
+<ul>
+<li><a href="#snippet-11">snippet #11</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#redux-hooks">Redux Hooks</a>
+- <a href="#snippet-12">snippet #12</a>
+- <a href="#snippet-13">snippet #13</a>
+- <a href="#snippet-14">snippet #14</a>
+- <a href="#snippet-15">snippet #15</a></li>
 </ul>
 </li>
 </ul>
@@ -447,10 +480,9 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
 <li>Установлен Visual Studio Code. Скачать можно тут <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></li>
 <li>Установлен Node.js. Скачиваем тут <a href="https://nodejs.org/en/">https://nodejs.org/en/</a></li>
 <li>Установлен npm или yarn. Yarn скачиваем тут <a href="https://yarnpkg.com/en/docs/install">https://yarnpkg.com/en/docs/install</a></li>
-<li>Расширение Redux Dev Tools для Chrome</li>
+<li>Расширение Redux DevTools для Chrome <a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en</a></li>
 <li>Хорошее настроение, время, налитый горячий чай или кофе.</li>
 </ol>
-<p><em>Опционально:</em> плагин для VS CODE &quot;Markdown all in one&quot; <a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one</a></p>
 <h2 id="%D0%BD%D0%B0%D1%87%D0%B0%D0%BB%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B">Начало работы</h2>
 <ol>
 <li>Открываем проект в Visual Studio Code.</li>
@@ -463,14 +495,11 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
 <p><strong>React Hooks</strong> — это функции, с помощью которых вы можете «подцепиться» к состоянию и методам жизненного цикла React из функциональных компонентов.</p>
 <p>В компоненте <code>News.jsx</code> вместо класса используем функцию:</p>
 <pre class="hljs"><code><div><span class="hljs-keyword">const</span> News = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-keyword">if</span> (isLoading) { <span class="hljs-comment">// isLoading ?</span>
-        <span class="hljs-keyword">return</span> &lt;div className="loader" /&gt;;
-    }
-
-    return news.map(( // news ?
-        item,
-        index
-    ) =&gt; &lt;ItemComponent key={item.id} index={index} item={item} /&gt;);
+    <span class="hljs-keyword">return</span> isLoading ? &lt;div className="loader" /&gt; : // isLoading
+        news.map(( // news ?
+            item,
+            index
+        ) =&gt; &lt;ItemComponent key={item.id} index={index} item={item} /&gt;);
 };
 </div></code></pre>
 <h3 id="usestate">useState</h3>
@@ -499,6 +528,7 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
   }
 </div></code></pre>
 <p>А сейчас, давайте рассмотрим, как мы можем сделать то же самое с использованием хука <code>useEffect</code>.</p>
+<h5 id="snippet-1">snippet #1</h5>
 <pre class="hljs"><code><div>  <span class="hljs-keyword">import</span> React, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
 
   <span class="hljs-keyword">const</span> News = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
@@ -516,7 +546,11 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
             });
     }, []);
 
-    <span class="hljs-keyword">return</span> {...}
+    <span class="hljs-keyword">return</span> isLoading ? &lt;div className="loader" /&gt; : // isLoading
+        news.map(( // news ?
+            item,
+            index
+        ) =&gt; &lt;ItemComponent key={item.id} index={index} item={item} /&gt;);
 </div></code></pre>
 <p>React запомнит функцию (то есть «эффект»), которую вы передали и вызовет её после того, как внесёт все изменения в DOM. <code>useEffect</code> имеет второй необязательный параметр - массив зависимостей. Если мы хотим, чтобы эффект запустился один раз, то необходимо передать пустой массив.</p>
 <h3 id="custom-hook">Custom Hook</h3>
@@ -530,6 +564,7 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
     <span class="hljs-keyword">return</span> {...}
 </div></code></pre>
 <p>Для этого делаем свой кастомный хук <code>useNews</code> и вынесем всю логику получения данных в неё. Для этого создадим новый файл <code>useNews.js</code> в папке <code>./hooks</code>:</p>
+<h5 id="snippet-2">snippet #2</h5>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
 
 <span class="hljs-keyword">import</span> { API_URL } <span class="hljs-keyword">from</span> <span class="hljs-string">"../constants"</span>;
@@ -558,8 +593,28 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
 <pre class="hljs"><code><div><span class="hljs-keyword">const</span> { isLoading, news } = useNews();
 </div></code></pre>
 <h2 id="%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC-%D0%BF%D0%B0%D0%BD%D0%B5%D0%BB%D1%8C-%D1%84%D0%B8%D0%BB%D1%8C%D1%82%D1%80%D0%BE%D0%B2">Добавляем панель фильтров</h2>
+<p>В файле <code>News.jsx</code> добавим панель фильтров:</p>
+<h5 id="snippet-3">snippet #3</h5>
+<pre class="hljs"><code><div>...
+import FiltersBar <span class="hljs-keyword">from</span> <span class="hljs-string">'./FiltersBar/FiltersBar'</span>;
+
+<span class="hljs-keyword">const</span> News = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> { isLoading, news } = useNews();
+
+    <span class="hljs-keyword">return</span> (
+        &lt;&gt;
+            &lt;FiltersBar /&gt;
+            {!isLoading ? news.map((item, index) =&gt; (
+                &lt;ItemComponent key={item.id} index={index} item={item} /&gt;
+            )) : &lt;div className="loader" /&gt;}
+        &lt;/&gt;
+    );
+};
+
+</div></code></pre>
 <p>В папке <code>/FiltersBar</code> добавим строку поиска, фильтр по категориям и сортировку:</p>
 <p>Файл <code>SearchBar.jsx</code>:</p>
+<h5 id="snippet-4">snippet #4</h5>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
 <span class="hljs-keyword">import</span> { DebounceInput } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-debounce-input"</span>;
 
@@ -580,6 +635,7 @@ export default SearchBar;
 </span></div></code></pre>
 <p>Для строки поиска мы будем использовать <code>DebounceInput</code>, что поможет нам уменьшить количество запросов на сервер.</p>
 <p>Файл <code>CategoryFilter.jsx</code>:</p>
+<h5 id="snippet-5">snippet #5</h5>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
 <span class="hljs-keyword">import</span> Select <span class="hljs-keyword">from</span> <span class="hljs-string">"react-select"</span>;
 
@@ -603,6 +659,7 @@ export default SearchBar;
 export default CategoryFilter;
 </span></div></code></pre>
 <p>Файл <code>Sorting.jsx</code>:</p>
+<h5 id="snippet-6">snippet #6</h5>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
 <span class="hljs-keyword">import</span> Select <span class="hljs-keyword">from</span> <span class="hljs-string">"react-select"</span>;
 
@@ -624,54 +681,44 @@ export default CategoryFilter;
 
 export default Sorting;
 </span></div></code></pre>
-<p>В файле <code>News.jsx</code> добавим панель фильтров:</p>
-<pre class="hljs"><code><div>...
-import FiltersBar <span class="hljs-keyword">from</span> <span class="hljs-string">'./FiltersBar/FiltersBar'</span>;
-
-<span class="hljs-keyword">const</span> News = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> { isLoading, news } = useNews();
-
-    <span class="hljs-keyword">return</span> (
-        &lt;&gt;
-            &lt;FiltersBar /&gt;
-            {!isLoading ? news.map((item, index) =&gt; (
-                &lt;ItemComponent key={item.id} index={index} item={item} /&gt;
-            )) : &lt;div className="loader" /&gt;}
-        &lt;/&gt;
-    );
-};
-
-</div></code></pre>
 <p>Для того, чтобы использовать фильтры, нам необходимо вынести данные в общее хранилище, для этого будем использовать Redux.</p>
 <h2 id="%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D0%B5%D0%BC-redux">Подключаем Redux</h2>
 <h3 id="%D0%B8%D0%BD%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F">Инициализация</h3>
 <p>Чтобы использовать Redux необходимо обернуть всё приложение в компонент <code>&lt;Provider&gt;</code>, чтобы Redux-стор был доступен в дереве компонентов.</p>
 <p>В файле <code>index.js</code> добавим код:</p>
-<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
-<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">"redux"</span>;
-<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">"react-redux"</span>;
+<h5 id="snippet-7">snippet #7</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
+<span class="hljs-keyword">import</span> { createStore } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>;
+<span class="hljs-keyword">import</span> { Provider } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
 
-<span class="hljs-keyword">import</span> rootReducer <span class="hljs-keyword">from</span> <span class="hljs-string">"./reducers/rootReducer"</span>;
+<span class="hljs-keyword">import</span> rootReducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./reducers/rootReducer'</span>;
+<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./App'</span>;
 
-<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"container"</span>);
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./styles/index.scss'</span>;
+
+<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'container'</span>);
 <span class="hljs-built_in">document</span>.body.appendChild(root);
 
-<span class="hljs-keyword">const</span> store = createStore(rootReducer, <span class="hljs-built_in">window</span>?.__REDUX_DEVTOOLS_EXTENSION__);
+<span class="hljs-keyword">const</span> reduxDevTools = <span class="hljs-built_in">window</span>.__REDUX_DEVTOOLS_EXTENSION__;
+
+<span class="hljs-keyword">const</span> store = createStore(rootReducer, {}, reduxDevTools &amp;&amp; reduxDevTools());
 
 <span class="hljs-keyword">const</span> render = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     ReactDOM.render(
         <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">{store}</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
-        root
+        root,
     );
 };
 
 render();
+
 </div></code></pre>
 <h3 id="actions">Actions</h3>
 <p>Далее переместим хранение новостей и фильтров в Redux-store. Начнём с создания actions. Для этого в папке <code>actions</code> создадим файл <code>actions.js</code>:</p>
+<h5 id="snippet-8">snippet #8</h5>
 <pre class="hljs"><code><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SET_SEARCH_FILTER = <span class="hljs-string">'SET_SEARCH_FILTER'</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SET_CATEGORY_FILTER = <span class="hljs-string">'SET_CATEGORY_FILTER'</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SET_SORTING = <span class="hljs-string">'SET_SORTING'</span>;
@@ -702,27 +749,29 @@ render();
 
 </div></code></pre>
 <h3 id="reducers">Reducers</h3>
-<p>В папке <code>reducers</code> редьюсеры для фильтров и новостей. Вместо конструкции <code>switch</code> используем хелпер <code>createReducer</code>:</p>
-<p><code>newsReducer.js</code></p>
-<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { createReducer } <span class="hljs-keyword">from</span> <span class="hljs-string">'@reduxjs/toolkit'</span>;
-
-<span class="hljs-keyword">import</span> { FETCH_NEWS_SUCCESS } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions/actions'</span>;
+<p>В папке <code>reducers</code> редьюсеры для фильтров и новостей.</p>
+<p><code>newsReducer.js:</code></p>
+<h5 id="snippet-9">snippet #9</h5>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> { FETCH_NEWS_SUCCESS } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions/actions'</span>;
 
 <span class="hljs-keyword">const</span> initialState = {
     <span class="hljs-attr">items</span>: [],
 };
 
-<span class="hljs-keyword">const</span> newsReducer = createReducer(initialState, {
-    [FETCH_NEWS_SUCCESS]: <span class="hljs-function">(<span class="hljs-params">state, action</span>) =&gt;</span> ({
-        ...state,
-        <span class="hljs-attr">items</span>: action.payload.news,
-    }),
-});
+<span class="hljs-keyword">const</span> newsReducer = <span class="hljs-function">(<span class="hljs-params">state = initialState, action</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (action.type === FETCH_NEWS_SUCCESS) {
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-attr">items</span>: action.payload.news,
+        };
+    }
+
+    <span class="hljs-keyword">return</span> state;
+};
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> newsReducer;
-
 </div></code></pre>
-<p><code>filtersReducer.js</code></p>
+<p><code>filtersReducer.js:</code></p>
+<h5 id="snippet-10">snippet #10</h5>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> { createReducer } <span class="hljs-keyword">from</span> <span class="hljs-string">'@reduxjs/toolkit'</span>;
 
 <span class="hljs-keyword">import</span> { SET_SEARCH_FILTER, SET_CATEGORY_FILTER, SET_SORTING } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions/actions'</span>;
@@ -753,6 +802,7 @@ render();
 
 </div></code></pre>
 <p>И объединим их в файле <code>rootReducer.js</code>, используя <code>combineReducers</code>, которое позволяет разбивать стор на отдельные модули:</p>
+<h6 id="snippet-11">snippet #11</h6>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> { combineReducers } <span class="hljs-keyword">from</span> <span class="hljs-string">'redux'</span>;
 
 <span class="hljs-keyword">import</span> filtersReducer <span class="hljs-keyword">from</span> <span class="hljs-string">'./filtersReducer'</span>;
@@ -767,6 +817,8 @@ render();
 </div></code></pre>
 <h3 id="redux-hooks">Redux Hooks</h3>
 <p>Для работы с Redux-store нам понадобятся хуки <code>useSelector</code> - для получения данных с redux store и <code>useDispatch</code> для получения ссылки на <code>dispatch</code> функции.</p>
+<p><code>useNews.js:</code></p>
+<h6 id="snippet-12">snippet #12</h6>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> { useSelector, useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
 
@@ -794,47 +846,66 @@ render();
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useNews;
 </div></code></pre>
-<p>Создадим файл <code>useFilters.js</code> для описания хуков для фильтров:</p>
+<p>Создадим файл <code>useFilters.js</code> для описания хуков для фильтров. Опишем селекторы и чтобы избежать дублирования кода используем хелпер <code>useReduxValue</code> :</p>
+<p><code>useFilters.js:</code>:</p>
+<h6 id="snippet-13">snippet #13</h6>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> { useSelector, useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
-<span class="hljs-keyword">import</span> { useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 
 <span class="hljs-keyword">import</span> { setSearchFilter, setSorting, setCategoryFilter } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions/actions'</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useSearch = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useReduxValue = <span class="hljs-function">(<span class="hljs-params">selector, setValue</span>) =&gt;</span> {
     <span class="hljs-keyword">const</span> dispatch = useDispatch();
-    <span class="hljs-keyword">const</span> search = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.filters.search);
+    <span class="hljs-keyword">const</span> value = useSelector(selector);
 
-    <span class="hljs-keyword">return</span> [search, useCallback(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> dispatch(setSearchFilter(value)), [dispatch])];
+    <span class="hljs-keyword">return</span> [value, value =&gt; dispatch(setValue(value))];
 };
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCategory = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> dispatch = useDispatch();
-    <span class="hljs-keyword">const</span> category = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.filters.category);
+<span class="hljs-comment">// селекторы</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> searchSelector = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.filters.search;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> sortSelector = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.filters.sort;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> categorySelector = <span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.filters.category;
 
-    <span class="hljs-keyword">return</span> [category, useCallback(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> dispatch(setCategoryFilter(value)), [dispatch])];
-};
+<span class="hljs-comment">// хуки для фильтров</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useSearch = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useReduxValue(searchSelector, setSearchFilter);
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useSort = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> dispatch = useDispatch();
-    <span class="hljs-keyword">const</span> sort = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.filters.sort);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useSort = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useReduxValue(sortSelector, setSorting);
 
-    <span class="hljs-keyword">return</span> [sort, useCallback(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> dispatch(setSorting(value)), [dispatch])];
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCategory = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> useReduxValue(categorySelector, setCategoryFilter);
+
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useFilters = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> [search] = useSearch();
+    <span class="hljs-keyword">const</span> [sort] = useSort();
+    <span class="hljs-keyword">const</span> [category] = useCategory();
+
+    <span class="hljs-keyword">return</span> {
+        search,
+        sort,
+        category,
+    };
 };
 
 </div></code></pre>
-<p><code>useCallback</code> вернёт мемоизированную версию колбэка, который изменяется только, если изменяются значения одной из зависимостей. Это полезно при передаче колбэков оптимизированным дочерним компонентам, которые полагаются на равенство ссылок для предотвращения ненужных рендеров</p>
 <p>В соответствующих компонентах фильтров делаем замену на наши хуки:</p>
+<h6 id="snippet-14">snippet #14</h6>
 <pre class="hljs"><code><div>    <span class="hljs-comment">// CategoryFilter.jsx</span>
-    <span class="hljs-keyword">const</span> [category, setCategory] = useCategory();
+    <span class="hljs-keyword">import</span> { useCategory } <span class="hljs-keyword">from</span> <span class="hljs-string">'../hooks/useFilters'</span>;
+    ...
+    const [category, setCategory] = useCategory();
 
     <span class="hljs-comment">// SearchBar.jsx</span>
-    <span class="hljs-keyword">const</span> [search, setSearch] = useSearch();
+    <span class="hljs-keyword">import</span> { useSearch } <span class="hljs-keyword">from</span> <span class="hljs-string">'../hooks/useFilters'</span>;
+    ...
+    const [search, setSearch] = useSearch();
 
     <span class="hljs-comment">// Sorting.jsx</span>
-    <span class="hljs-keyword">const</span> [sort, setSort] = useSort();
+    <span class="hljs-keyword">import</span> { useSort } <span class="hljs-keyword">from</span> <span class="hljs-string">'../hooks/useFilters'</span>;
+    ...
+    const [sort, setSort] = useSort();
 </div></code></pre>
 <p>Проверяем работу в Redux Dev Tools.</p>
 <p>Добавляем фильтры в <code>useNews</code>;</p>
+<h6 id="snippet-15">snippet #15</h6>
 <pre class="hljs"><code><div><span class="hljs-keyword">import</span> { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> { useSelector, useDispatch } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-redux'</span>;
 <span class="hljs-keyword">import</span> { stringify } <span class="hljs-keyword">from</span> <span class="hljs-string">'query-string'</span>;
@@ -849,9 +920,7 @@ render();
     <span class="hljs-keyword">const</span> dispatch = useDispatch();
     <span class="hljs-keyword">const</span> news = useSelector(<span class="hljs-function"><span class="hljs-params">state</span> =&gt;</span> state.news.items);
     <span class="hljs-comment">// используем фильтры</span>
-    <span class="hljs-keyword">const</span> [search] = useSearch();
-    <span class="hljs-keyword">const</span> [category] = useCategory();
-    <span class="hljs-keyword">const</span> [sort] = useSort();
+    <span class="hljs-keyword">const</span> { category, search, sort } = useFilters();
 
     useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
         setIsLoading(<span class="hljs-literal">true</span>);
@@ -864,7 +933,7 @@ render();
                 dispatch(setNews(json));
                 setIsLoading(<span class="hljs-literal">false</span>);
             });
-    }, [category, dispatch, search, sort]);
+    }, [dispatch, category, search, sort]);
 
     <span class="hljs-keyword">return</span> { news, isLoading };
 };

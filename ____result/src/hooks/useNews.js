@@ -5,15 +5,13 @@ import { stringify } from 'query-string';
 import { API_URL } from '../constants';
 import { setNews } from '../actions/actions';
 
-import { useSearch, useCategory, useSort } from './useFilters';
+import { useFilters } from './useFilters';
 
 const useNews = () => {
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
     const news = useSelector(state => state.news.items);
-    const [search] = useSearch();
-    const [category] = useCategory();
-    const [sort] = useSort();
+    const { category, search, sort } = useFilters();
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,7 +24,7 @@ const useNews = () => {
                 dispatch(setNews(json));
                 setIsLoading(false);
             });
-    }, [category, dispatch, search, sort]);
+    }, [dispatch, category, search, sort]);
 
     return { news, isLoading };
 };

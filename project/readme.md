@@ -3,13 +3,28 @@
 - [Используем React Hooks](#%d0%98%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d1%83%d0%b5%d0%bc-react-hooks)
   - [useState](#usestate)
   - [useEffect](#useeffect)
+      - [snippet #1](#snippet-1)
   - [Custom Hook](#custom-hook)
+      - [snippet #2](#snippet-2)
 - [Добавляем панель фильтров](#%d0%94%d0%be%d0%b1%d0%b0%d0%b2%d0%bb%d1%8f%d0%b5%d0%bc-%d0%bf%d0%b0%d0%bd%d0%b5%d0%bb%d1%8c-%d1%84%d0%b8%d0%bb%d1%8c%d1%82%d1%80%d0%be%d0%b2)
+      - [snippet #3](#snippet-3)
+      - [snippet #4](#snippet-4)
+      - [snippet #5](#snippet-5)
+      - [snippet #6](#snippet-6)
 - [Подключаем Redux](#%d0%9f%d0%be%d0%b4%d0%ba%d0%bb%d1%8e%d1%87%d0%b0%d0%b5%d0%bc-redux)
   - [Инициализация](#%d0%98%d0%bd%d0%b8%d1%86%d0%b8%d0%b0%d0%bb%d0%b8%d0%b7%d0%b0%d1%86%d0%b8%d1%8f)
+      - [snippet #7](#snippet-7)
   - [Actions](#actions)
+      - [snippet #8](#snippet-8)
   - [Reducers](#reducers)
+      - [snippet #9](#snippet-9)
+      - [snippet #10](#snippet-10)
+        - [snippet #11](#snippet-11)
   - [Redux Hooks](#redux-hooks)
+        - [snippet #12](#snippet-12)
+        - [snippet #13](#snippet-13)
+        - [snippet #14](#snippet-14)
+        - [snippet #15](#snippet-15)
 
 ## Пререквизиты
 
@@ -18,10 +33,8 @@
 1. Установлен Visual Studio Code. Скачать можно тут <https://code.visualstudio.com/>
 2. Установлен Node.js. Скачиваем тут <https://nodejs.org/en/>
 3. Установлен npm или yarn. Yarn скачиваем тут <https://yarnpkg.com/en/docs/install>
-4. Расширение Redux Dev Tools для Chrome
+4. Расширение Redux DevTools для Chrome <https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en>
 5. Хорошее настроение, время, налитый горячий чай или кофе.
-
-*Опционально:* плагин для VS CODE "Markdown all in one" <https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one>
 
 ## Начало работы
 
@@ -39,14 +52,11 @@
 
 ```jsx
 const News = () => {
-    if (isLoading) { // isLoading ?
-        return <div className="loader" />;
-    }
-
-    return news.map(( // news ?
-        item,
-        index
-    ) => <ItemComponent key={item.id} index={index} item={item} />);
+    return isLoading ? <div className="loader" /> : // isLoading
+        news.map(( // news ?
+            item,
+            index
+        ) => <ItemComponent key={item.id} index={index} item={item} />);
 };
 ```
 
@@ -86,6 +96,8 @@ const News = () => {
 
 А сейчас, давайте рассмотрим, как мы можем сделать то же самое с использованием хука `useEffect`.
 
+##### snippet #1
+
 ```jsx
   import React, { useState, useEffect } from "react";
 
@@ -104,7 +116,11 @@ const News = () => {
             });
     }, []);
 
-    return {...}
+    return isLoading ? <div className="loader" /> : // isLoading
+        news.map(( // news ?
+            item,
+            index
+        ) => <ItemComponent key={item.id} index={index} item={item} />);
 ```
 
 React запомнит функцию (то есть «эффект»), которую вы передали и вызовет её после того, как внесёт все изменения в DOM. `useEffect` имеет второй необязательный параметр - массив зависимостей. Если мы хотим, чтобы эффект запустился один раз, то необходимо передать пустой массив.
@@ -124,6 +140,8 @@ React запомнит функцию (то есть «эффект»), кото
 ```
 
 Для этого делаем свой кастомный хук `useNews` и вынесем всю логику получения данных в неё. Для этого создадим новый файл `useNews.js` в папке `./hooks`:
+
+##### snippet #2
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -159,9 +177,34 @@ const { isLoading, news } = useNews();
 
 ## Добавляем панель фильтров
 
+В файле `News.jsx` добавим панель фильтров:
+
+##### snippet #3
+
+```jsx
+...
+import FiltersBar from './FiltersBar/FiltersBar';
+
+const News = () => {
+    const { isLoading, news } = useNews();
+
+    return (
+        <>
+            <FiltersBar />
+            {!isLoading ? news.map((item, index) => (
+                <ItemComponent key={item.id} index={index} item={item} />
+            )) : <div className="loader" />}
+        </>
+    );
+};
+
+```
+
 В папке `/FiltersBar` добавим строку поиска, фильтр по категориям и сортировку:
 
 Файл `SearchBar.jsx`:
+
+##### snippet #4
 
 ```jsx
 import React, { useState } from "react";
@@ -186,6 +229,8 @@ export default SearchBar;
 Для строки поиска мы будем использовать `DebounceInput`, что поможет нам уменьшить количество запросов на сервер.
 
 Файл `CategoryFilter.jsx`:
+
+##### snippet #5
 
 ```jsx
 import React, { useState } from "react";
@@ -213,6 +258,8 @@ export default CategoryFilter;
 
 Файл `Sorting.jsx`:
 
+##### snippet #6
+
 ```jsx
 import React, { useState } from "react";
 import Select from "react-select";
@@ -236,27 +283,6 @@ function Sorting() {
 export default Sorting;
 ```
 
-В файле `News.jsx` добавим панель фильтров:
-
-```jsx
-...
-import FiltersBar from './FiltersBar/FiltersBar';
-
-const News = () => {
-    const { isLoading, news } = useNews();
-
-    return (
-        <>
-            <FiltersBar />
-            {!isLoading ? news.map((item, index) => (
-                <ItemComponent key={item.id} index={index} item={item} />
-            )) : <div className="loader" />}
-        </>
-    );
-};
-
-```
-
 Для того, чтобы использовать фильтры, нам необходимо вынести данные в общее хранилище, для этого будем использовать Redux.
 
 ## Подключаем Redux
@@ -267,34 +293,44 @@ const News = () => {
 
 В файле `index.js` добавим код:
 
+##### snippet #7
+
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-import rootReducer from "./reducers/rootReducer";
+import rootReducer from './reducers/rootReducer';
+import App from './App';
 
-const root = document.createElement("container");
+import './styles/index.scss';
+
+const root = document.createElement('container');
 document.body.appendChild(root);
 
-const store = createStore(rootReducer, window?.__REDUX_DEVTOOLS_EXTENSION__);
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__;
+
+const store = createStore(rootReducer, {}, reduxDevTools && reduxDevTools());
 
 const render = () => {
     ReactDOM.render(
         <Provider store={store}>
             <App />
         </Provider>,
-        root
+        root,
     );
 };
 
 render();
+
 ```
 
 ### Actions
 
 Далее переместим хранение новостей и фильтров в Redux-store. Начнём с создания actions. Для этого в папке `actions` создадим файл `actions.js`:
+
+##### snippet #8
 
 ```jsx
 export const SET_SEARCH_FILTER = 'SET_SEARCH_FILTER';
@@ -329,31 +365,35 @@ export const setNews = news => ({
 
 ### Reducers
 
-В папке `reducers` редьюсеры для фильтров и новостей. Вместо конструкции `switch` используем хелпер `createReducer`:
+В папке `reducers` редьюсеры для фильтров и новостей.
 
-`newsReducer.js`
+`newsReducer.js:`
+
+##### snippet #9
 
 ```jsx
-import { createReducer } from '@reduxjs/toolkit';
-
 import { FETCH_NEWS_SUCCESS } from '../actions/actions';
 
 const initialState = {
     items: [],
 };
 
-const newsReducer = createReducer(initialState, {
-    [FETCH_NEWS_SUCCESS]: (state, action) => ({
-        ...state,
-        items: action.payload.news,
-    }),
-});
+const newsReducer = (state = initialState, action) => {
+    if (action.type === FETCH_NEWS_SUCCESS) {
+        return {
+            items: action.payload.news,
+        };
+    }
+
+    return state;
+};
 
 export default newsReducer;
-
 ```
 
-`filtersReducer.js`
+`filtersReducer.js:`
+
+##### snippet #10
 
 ```jsx
 import { createReducer } from '@reduxjs/toolkit';
@@ -388,6 +428,8 @@ export default filtersReducer;
 
 И объединим их в файле `rootReducer.js`, используя `combineReducers`, которое позволяет разбивать стор на отдельные модули:
 
+###### snippet #11
+
 ```jsx
 import { combineReducers } from 'redux';
 
@@ -405,6 +447,10 @@ export default rootReducer;
 ### Redux Hooks
 
 Для работы с Redux-store нам понадобятся хуки `useSelector` - для получения данных с redux store и `useDispatch` для получения ссылки на `dispatch` функции.
+
+`useNews.js:`
+
+###### snippet #12
 
 ```jsx
 import { useState, useEffect } from 'react';
@@ -435,55 +481,77 @@ const useNews = () => {
 export default useNews;
 ```
 
-Создадим файл `useFilters.js` для описания хуков для фильтров:
+Создадим файл `useFilters.js` для описания хуков для фильтров. Опишем селекторы и чтобы избежать дублирования кода используем хелпер `useReduxValue` :
+
+`useFilters.js:`:
+
+###### snippet #13
 
 ```jsx
 import { useSelector, useDispatch } from 'react-redux';
-import { useCallback } from 'react';
 
 import { setSearchFilter, setSorting, setCategoryFilter } from '../actions/actions';
 
-export const useSearch = () => {
+export const useReduxValue = (selector, setValue) => {
     const dispatch = useDispatch();
-    const search = useSelector(state => state.filters.search);
+    const value = useSelector(selector);
 
-    return [search, useCallback(value => dispatch(setSearchFilter(value)), [dispatch])];
+    return [value, value => dispatch(setValue(value))];
 };
 
-export const useCategory = () => {
-    const dispatch = useDispatch();
-    const category = useSelector(state => state.filters.category);
+// селекторы
+export const searchSelector = state => state.filters.search;
+export const sortSelector = state => state.filters.sort;
+export const categorySelector = state => state.filters.category;
 
-    return [category, useCallback(value => dispatch(setCategoryFilter(value)), [dispatch])];
-};
+// хуки для фильтров
+export const useSearch = () => useReduxValue(searchSelector, setSearchFilter);
 
-export const useSort = () => {
-    const dispatch = useDispatch();
-    const sort = useSelector(state => state.filters.sort);
+export const useSort = () => useReduxValue(sortSelector, setSorting);
 
-    return [sort, useCallback(value => dispatch(setSorting(value)), [dispatch])];
+export const useCategory = () => useReduxValue(categorySelector, setCategoryFilter);
+
+
+export const useFilters = () => {
+    const [search] = useSearch();
+    const [sort] = useSort();
+    const [category] = useCategory();
+
+    return {
+        search,
+        sort,
+        category,
+    };
 };
 
 ```
 
-`useCallback` вернёт мемоизированную версию колбэка, который изменяется только, если изменяются значения одной из зависимостей. Это полезно при передаче колбэков оптимизированным дочерним компонентам, которые полагаются на равенство ссылок для предотвращения ненужных рендеров
-
 В соответствующих компонентах фильтров делаем замену на наши хуки:
+
+###### snippet #14
 
 ```jsx
     // CategoryFilter.jsx
+    import { useCategory } from '../hooks/useFilters';
+    ...
     const [category, setCategory] = useCategory();
 
     // SearchBar.jsx
+    import { useSearch } from '../hooks/useFilters';
+    ...
     const [search, setSearch] = useSearch();
 
     // Sorting.jsx
+    import { useSort } from '../hooks/useFilters';
+    ...
     const [sort, setSort] = useSort();
 ```
 
 Проверяем работу в Redux Dev Tools.
 
 Добавляем фильтры в `useNews`;
+
+###### snippet #15
 
 ```jsx
 import { useState, useEffect } from 'react';
@@ -500,9 +568,7 @@ const useNews = () => {
     const dispatch = useDispatch();
     const news = useSelector(state => state.news.items);
     // используем фильтры
-    const [search] = useSearch();
-    const [category] = useCategory();
-    const [sort] = useSort();
+    const { category, search, sort } = useFilters();
 
     useEffect(() => {
         setIsLoading(true);
@@ -515,7 +581,7 @@ const useNews = () => {
                 dispatch(setNews(json));
                 setIsLoading(false);
             });
-    }, [category, dispatch, search, sort]);
+    }, [dispatch, category, search, sort]);
 
     return { news, isLoading };
 };

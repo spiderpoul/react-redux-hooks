@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import ItemComponent from './ItemComponent';
 import { API_URL } from './constants';
+// import FiltersBar from './FiltersBar/FiltersBar';
 
 export class News extends Component {
     constructor() {
@@ -21,18 +22,18 @@ export class News extends Component {
     }
 
     render() {
-        if (this.state.isLoading) { return (<div className="loader" />); }
-
         return (
             <>
-                {this.state.news.map((item, index) => (
-                    <ItemComponent
-                        key={item.id}
-                        index={index}
-                        item={item}
-                    />
-                ),
-                )}
+                {this.state.isLoading ?
+                    <div className="loader" />
+                    : this.state.news.map((item, index) => (
+                        <ItemComponent
+                            key={item.id}
+                            index={index}
+                            item={item}
+                        />
+                    ),
+                    )}
             </>
         );
     }

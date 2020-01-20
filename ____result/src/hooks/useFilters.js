@@ -1,25 +1,33 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useCallback } from 'react';
 
 import { setSearchFilter, setSorting, setCategoryFilter } from '../actions/actions';
 
-export const useSearch = () => {
+export const useReduxValue = (selector, setValue) => {
     const dispatch = useDispatch();
-    const search = useSelector(state => state.filters.search);
+    const value = useSelector(selector);
 
-    return [search, useCallback(value => dispatch(setSearchFilter(value)), [dispatch])];
+    return [value, value => dispatch(setValue(value))];
 };
 
-export const useCategory = () => {
-    const dispatch = useDispatch();
-    const category = useSelector(state => state.filters.category);
+export const searchSelector = state => state.filters.search;
+export const sortSelector = state => state.filters.sort;
+export const categorySelector = state => state.filters.category;
 
-    return [category, useCallback(value => dispatch(setCategoryFilter(value)), [dispatch])];
-};
+export const useSearch = () => useReduxValue(searchSelector, setSearchFilter);
 
-export const useSort = () => {
-    const dispatch = useDispatch();
-    const sort = useSelector(state => state.filters.sort);
+export const useSort = () => useReduxValue(sortSelector, setSorting);
 
-    return [sort, useCallback(value => dispatch(setSorting(value)), [dispatch])];
+export const useCategory = () => useReduxValue(categorySelector, setCategoryFilter);
+
+
+export const useFilters = () => {
+    const [search] = useSearch();
+    const [sort] = useSort();
+    const [category] = useCategory();
+
+    return {
+        search,
+        sort,
+        category,
+    };
 };
