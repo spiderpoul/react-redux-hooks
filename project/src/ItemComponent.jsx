@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import format from "date-fns/format";
+import React from 'react';
+import PropTypes from 'prop-types';
+import format from 'date-fns/format';
 
 export const ItemComponent = ({ item, index }) => {
     if (!item) return null;
@@ -11,10 +11,10 @@ export const ItemComponent = ({ item, index }) => {
             <p>
                 {item.created_at_i && (
                     <span className="dateTime">
-                        {format(item.created_at_i * 1000, "dd MMMM yyyy")}
+                        {format(item.created_at_i * 1000, 'dd MMMM yyyy')}
                     </span>
                 )}
-                <span className="author">{" "}{item.author}</span>
+                <span className="author">{' '}{item.author}</span>
             </p>
             <p dangerouslySetInnerHTML={{ __html: item.comment_text }} />
         </a>
@@ -22,12 +22,12 @@ export const ItemComponent = ({ item, index }) => {
 };
 
 ItemComponent.defaultProps = {
-    index: 0
+    index: 0,
 };
 
 ItemComponent.propTypes = {
     item: PropTypes.object,
-    index: PropTypes.number
+    index: PropTypes.number,
 };
 
 export default ItemComponent;

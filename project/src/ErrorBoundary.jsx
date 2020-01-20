@@ -1,20 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export class ErrorBoundary extends React.Component {
     constructor(props) {
         super(props);
         this.state = { hasError: false };
-      }
-    componentDidCatch () {
+    }
+
+    componentDidCatch() {
         this.setState({ hasError: true });
     }
 
     static getDerivedStateFromError(error) {
         return { hasError: true };
-      }
+    }
 
-    render () {
+    render() {
         if (this.state.hasError) {
             return (
                 <div>
@@ -22,13 +23,13 @@ export class ErrorBoundary extends React.Component {
                 </div>
             );
         }
-        else 
-             return this.props.children;
+
+        return this.props.children;
     }
 }
 
 ErrorBoundary.propTypes = {
-    children: PropTypes.any
+    children: PropTypes.any,
 };
 
 export default ErrorBoundary;
