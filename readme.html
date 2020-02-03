@@ -510,7 +510,7 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
 
   const News = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> [news, setNews] = useState([]);
-    <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = useState([]);
+    <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = useState(<span class="hljs-literal">false</span>);
 
     ...
   }
@@ -546,8 +546,8 @@ void 0!==arguments[0]&&(br.sequenceConfig=arguments[0]),e=arguments[1]):e=argume
             });
     }, []);
 
-    <span class="hljs-keyword">return</span> isLoading ? &lt;div className="loader" /&gt; : // isLoading
-        news.map(( // news ?
+    <span class="hljs-keyword">return</span> isLoading ? &lt;div className="loader" /&gt; :
+        news.map((
             item,
             index
         ) =&gt; &lt;ItemComponent key={item.id} index={index} item={item} /&gt;);
@@ -913,7 +913,7 @@ render();
 <span class="hljs-keyword">import</span> { API_URL } <span class="hljs-keyword">from</span> <span class="hljs-string">'../constants'</span>;
 <span class="hljs-keyword">import</span> { setNews } <span class="hljs-keyword">from</span> <span class="hljs-string">'../actions/actions'</span>;
 
-<span class="hljs-keyword">import</span> { useSearch, useCategory, useSort } <span class="hljs-keyword">from</span> <span class="hljs-string">'./useFilters'</span>;
+<span class="hljs-keyword">import</span> { useFilters } <span class="hljs-keyword">from</span> <span class="hljs-string">'./useFilters'</span>;
 
 <span class="hljs-keyword">const</span> useNews = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = useState(<span class="hljs-literal">false</span>);

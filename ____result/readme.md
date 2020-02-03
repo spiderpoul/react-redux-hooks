@@ -71,7 +71,7 @@ const News = () => {
 
   const News = () => {
     const [news, setNews] = useState([]);
-    const [isLoading, setIsLoading] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     ...
   }
@@ -561,7 +561,7 @@ import { stringify } from 'query-string';
 import { API_URL } from '../constants';
 import { setNews } from '../actions/actions';
 
-import { useSearch, useCategory, useSort } from './useFilters';
+import { useFilters } from './useFilters';
 
 const useNews = () => {
     const [isLoading, setIsLoading] = useState(false);

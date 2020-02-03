@@ -71,7 +71,7 @@ const News = () => {
 
   const News = () => {
     const [news, setNews] = useState([]);
-    const [isLoading, setIsLoading] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     ...
   }
@@ -116,8 +116,8 @@ const News = () => {
             });
     }, []);
 
-    return isLoading ? <div className="loader" /> : // isLoading
-        news.map(( // news ?
+    return isLoading ? <div className="loader" /> :
+        news.map((
             item,
             index
         ) => <ItemComponent key={item.id} index={index} item={item} />);
@@ -561,7 +561,7 @@ import { stringify } from 'query-string';
 import { API_URL } from '../constants';
 import { setNews } from '../actions/actions';
 
-import { useSearch, useCategory, useSort } from './useFilters';
+import { useFilters } from './useFilters';
 
 const useNews = () => {
     const [isLoading, setIsLoading] = useState(false);

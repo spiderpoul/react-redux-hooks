@@ -116,8 +116,8 @@ const News = () => {
             });
     }, []);
 
-    return isLoading ? <div className="loader" /> : // isLoading
-        news.map(( // news ?
+    return isLoading ? <div className="loader" /> :
+        news.map((
             item,
             index
         ) => <ItemComponent key={item.id} index={index} item={item} />);
